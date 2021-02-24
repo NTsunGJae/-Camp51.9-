@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp 51.9 3D프린터 이용대장 </title>
+    <link href="style.css" rel="stylesheet">
+    <link href="style_popup1.css" rel="stylesheet">
+    <link href="style_popup2.css" rel="stylesheet">
+    <link href="style_phone.css" rel="stylesheet">
+    <link href="Gong Gothic Medium.ttf" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+    <script type = "text/javascript" src = "main.js"></script>
+</head>
+<body>
+    <!--<strong>Camp51.9 3D프린터 관리대장</strong>
+    <span class="clock_hour" id='clock_hour'></span>
+    <span class="clock_minute" id='clock_minute'></span>
+    <span class="clock_second" id='clock_second'></span> -->
+    <!-- <button class="home_btn" onclick="location.href='home.html' ">HOME</button> 
+    <img src="Logo_Rectangle.png"  width="500" height="170">-->
+    <a class="log" href="#" 
+	onClick="window.open('https://docs.google.com/spreadsheets/d/1LR1tjq51UpTW5dNAhOqmwa7e9Q0YYVnQ2sdtRWUxzLY/edit?usp=sharing', '_blank')">사용 로그는 여기</a>
+    <div class="Title">
+        <section class="Logo">
+            <a href="https://peaceful-euler-43deb6.netlify.app/" height="5" width="10" target="_blank">
+                <img class="Logo_img" src="Logo_Rectangle.png">
+            </a>
+        </section>
+    </div>
+    <div class="box">
+        <section class="btn">
+            <button class= "btn1" type = "button" id="Student">3D 프린터 사용하기 (재학생)</button>
+            <button class= "btn2" type = "button" id="Public" >3D 프린터 사용하기 (일반인)</button>
+        </section>
+    </div>
+    <div class="modal1"> 
+        <div class="modal-content1"> 
+            <span class="close-button1"><strong>&times;</strong></span> 
+            <form id='myform1'>
+                <h2 class="myform1">정보 입력</h2>
+                <p class="User_name">
+                <div class="wrapper_Student">
+                    <div class="input-data">
+                        <input class="User_name" type="text" name="name" id='User_name_Student' autocomplete='on' required/>
+                        <div class="underline"></div>
+                        <label>사용자 이름</label>
+                    </div>
+                </div></p>
+                <p class="User_num">
+                    <div class="wrapper_Student">
+                        <div class="input-data">
+                            <input class="User_num" type="number" name="num" id='User_num_Student' autocomplete='on' required/>
+                            <div class="underline"></div>
+                            <label>학번</label>
+                        </div>
+                    </div></p>
+                <p class="print_num1">
+                <div class="wrapper_Student">
+                    <div class="input-data">
+                        <input class="print_num" type="number" name="num" id='print_num_Student' min="0" max="8" autocomplete='on' required/>
+                        <div class="underline"></div>
+                        <label>프린터 번호</label>
+                    </div>
+                </div></p>
+                <p class="print_time1">
+                    <div class="wrapper_Student0">
+                        <div class="input-data1">
+                            <input class="print_time1" type="number" name="time_h" id='time_h_Student' min="0" max="60" required/>
+                            <div class="underline"></div>
+                            <label> 시간</label>
+                        </div>
+                    </div>
+                    <div class="wrapper_Student0">
+                        <div class="input-data1">
+                            <input class="print_time1" type="number" name="time_m" id='time_m_Student' min="0" max="60" required/>
+                            <div class="underline"></div>
+                            <label> 분</label>
+                        </div>
+                    </div></p><br><br><br><br><br><br><br>
+                    <p class="※">※출력 시간</p>
+                    <input class= "popup_use_btn1" type='button' value='사용하기' id='btInput' accesskey="" onclick='check_onclick_Student()'/>
+            </form>
+        </div>
+    </div>
+    
+    <div class="modal2"> 
+        <div class="modal-content2"> 
+            <span class="close-button2"><strong>&times;</strong></span> 
+            <form id='myform2'>
+                <h2 class="myform2">정보 입력</h2>
+                <p class="User_name">
+                <div class="wrapper_Public">
+                    <div class="input-data">
+                        <input class="User_name" type="text" name="name" id='User_name_Public' autocomplete='on' required/>
+                        <div class="underline"></div>
+                        <label>사용자 이름</label>
+                    </div>
+                </div></p>
+                <p class="User_infor">
+                    <div class="wrapper_Public">
+                        <div class="input-data">
+                            <input class="User_num" type="text" name="num" id='User_infor_Public' autocomplete='on' required/>
+                            <div class="underline"></div>
+                            <label>소속</label>
+                        </div>
+                    </div></p>
+                <p class="print_num1">
+                <div class="wrapper_Public">
+                    <div class="input-data">
+                        <input class="print_num" type="number" name="num" id='print_num_Public' min="0" max="8" autocomplete='on' required/>
+                        <div class="underline"></div>
+                        <label>프린터 번호</label>
+                    </div>
+                </div></p>
+                <p class="print_time1">
+                    <div class="wrapper_Public0">
+                        <div class="input-data1">
+                            <input class="print_time1" type="number" name="time_h" id='time_h_Public' min="0" max="60" required/>
+                            <div class="underline"></div>
+                            <label> 시간</label>
+                        </div>
+                    </div>
+                    <div class="wrapper_Public0">
+                        <div class="input-data1">
+                            <input class="print_time1" type="number" name="time_m" id='time_m_Public' min="0" max="60" required/>
+                            <div class="underline"></div>
+                            <label> 분</label>
+                        </div>
+                    </div></p><br><br><br><br><br><br>
+                    <p class="※">※출력 시간</p>
+                    <input class= "popup_use_btn2" type='button' value='사용하기' id='btInput' accesskey="" onclick='check_onclick_Public()'/>
+            </form>
+        </div>
+    </div>
+    <div class="printer">
+        <div class="printerLine1">    
+            <section class="printer1" ><br><h2>프린터1<br><br><p id ="printer1"></p></h2></section>
+            <section class="printer2" ><br><h2>프린터2<br><br><p id ="printer2"></p></h2></section>
+            <section class="printer3" ><br><h2>프린터3<br><br><p id ="printer3"></p></h2></section>
+            <section class="printer4" ><br><h2>프린터4<br><br><p id ="printer4"></p></h2></section>
+        </div>
+        <div class="printerLine2">    
+            <section class="printer5" ><br><h2>프린터5<br><br><p id ="printer5"></p></h2></section>
+            <section class="printer6" ><br><h2>프린터6<br><br><p id ="printer6"></p></h2></section>
+            <section class="printer7" ><br><h2>프린터7<br><br><p id ="printer7"></p></h2></section>
+            <section class="printer8" ><br><h2>프린터8<br><br><p id ="printer8"></p></h2></section>
+        </div>
+    </div>
+</body>
+    <scrip src="main.js"></scrip>
+</html>
